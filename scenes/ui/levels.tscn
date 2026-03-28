@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwetjwnv3ay8u"]
+[gd_scene load_steps=3 format=3 uid="uid://dwetjwnv3ay8u"]
 
 [ext_resource type="Script" uid="uid://wv13prg7wq41" path="res://scenes/ui/Levels.gd" id="1_e6opw"]
+[ext_resource type="FontFile" uid="uid://cqu680hkordic" path="res://resources/PressStart2P-Regular.ttf" id="2_fu2qk"]
 
 [node name="Levels" type="Control"]
 layout_mode = 3
@@ -10,6 +11,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e6opw")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 2
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 367.0
+offset_bottom = 650.0
+scale = Vector2(3.16, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -26,11 +36,13 @@ size_flags_vertical = 4
 
 [node name="Level1" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fu2qk")
 theme_override_font_sizes/font_size = 50
 text = "Level 1"
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fu2qk")
 theme_override_font_sizes/font_size = 50
 text = "Back"
 

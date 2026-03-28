@@ -1,22 +1,105 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3ahg7tgwomq4"]
+[gd_scene load_steps=3 format=3 uid="uid://d3ahg7tgwomq4"]
 
 [ext_resource type="Script" uid="uid://12takrgx8qd5" path="res://scenes/levels/level1/level_1.gd" id="1_jr0af"]
+[ext_resource type="FontFile" uid="uid://cqu680hkordic" path="res://resources/PressStart2P-Regular.ttf" id="2_v7als"]
 
-[node name="Level1" type="Node2D"]
+[node name="Level1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_jr0af")
 
-[node name="Display" type="RichTextLabel" parent="."]
-offset_left = 355.0
-offset_top = 75.0
-offset_right = 763.0
-offset_bottom = 414.0
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.8, 16.2)
+color = Color(0, 0, 0, 1)
 
-[node name="Block" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="DisplayContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 1.0
+offset_bottom = 23.0
+scale = Vector2(78.16, 19.56)
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="Pass" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="VBoxContainer" type="VBoxContainer" parent="DisplayContainer"]
+layout_mode = 2
+
+[node name="Display" type="Label" parent="DisplayContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatsContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 3.0
+offset_right = -319.0
+offset_bottom = 23.0
+grow_horizontal = 0
+scale = Vector2(323.456, 12.8461)
+size_flags_vertical = 8
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsContainer"]
+layout_mode = 2
+
+[node name="Stats" type="Label" parent="StatsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_v7als")
+theme_override_font_sizes/font_size = 20
+
+[node name="Buttons" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -108.0
+offset_right = -3.0
+offset_bottom = -84.0001
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, 1.12)
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
+layout_mode = 2
+
+[node name="Block" type="Button" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_v7als")
+text = "Block
+"
+
+[node name="Pass" type="Button" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_v7als")
+text = "Pass"
+
+[node name="ToLevels" type="Button" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "To levels"
 
 [connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="Buttons/HBoxContainer/Block" to="." method="_on_block_pressed"]
+[connection signal="pressed" from="Buttons/HBoxContainer/Pass" to="." method="_on_pass_pressed"]
+[connection signal="pressed" from="Buttons/HBoxContainer/ToLevels" to="." method="_on_to_levels_pressed"]

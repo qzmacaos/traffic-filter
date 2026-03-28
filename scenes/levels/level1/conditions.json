@@ -1,0 +1,24 @@
+{
+	"breif": "pass all kz, block all ru",
+	"passable":{
+		"headers": [
+			"POST explorer.kz",
+			"POST powder.kz"
+		],
+		"bodys": [
+			"{}",
+			"{\"result\":\"ok\"
+			}"
+		]
+	},
+	"blockable":{
+		"headers": [
+			"POST explorer.ru",
+			"POST powder.ru"
+		],
+		"bodys": [
+			"{}",
+			"{\"result\":\"ok\"}"
+		]
+	}
+}
