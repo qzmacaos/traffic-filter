@@ -9,11 +9,11 @@ func _ready() -> void:
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property($MarginContainer/VBoxContainer/Label, 'visible_ratio', 1, 30)
-	await get_tree().create_timer(31.0).timeout
+	await get_tree().create_timer(32.0).timeout
 	load_menu()
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
+	if event is InputEventKey or event is InputEventMouse and event.is_pressed():
 		load_menu()
 	

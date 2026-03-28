@@ -1,9 +1,27 @@
 {
-	"breif": "pass all kz, block all ru",
+	"brief": [
+		"First day huh?",
+		"Lets Start with somethoing easy.",
+		"Block all .hom domain traffic", 
+		"it means example.hom must be blocked",
+		"and example.koz must pass.",
+		"No hurry, take your time"
+	],
+	"conditions": [
+		".hom domain to block",
+		"others pass"
+	],
+	"end": {
+		"metrics":{
+			"rps": 0.1,
+			"max_block_mistakes": 10,
+			"max_pass_mistakes": 0
+		}
+	},
 	"passable":{
 		"headers": [
-			"POST explorer.kz",
-			"POST powder.kz"
+			"POST explorer.koz",
+			"POST powder.koz"
 		],
 		"bodys": [
 			"{}",
@@ -13,8 +31,8 @@
 	},
 	"blockable":{
 		"headers": [
-			"POST explorer.ru",
-			"POST powder.ru"
+			"POST explorer.hom",
+			"POST powder.hom"
 		],
 		"bodys": [
 			"{}",

@@ -18,46 +18,76 @@ offset_bottom = 40.0
 scale = Vector2(28.8, 16.2)
 color = Color(0, 0, 0, 1)
 
-[node name="DisplayContainer" type="MarginContainer" parent="."]
+[node name="DisplayContainter" type="MarginContainer" parent="."]
 layout_mode = 1
-offset_right = 1.0
-offset_bottom = 23.0
-scale = Vector2(78.16, 19.56)
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+offset_right = 61.0
+offset_bottom = 76.0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DisplayContainer"]
+[node name="Display" type="Label" parent="DisplayContainter"]
 layout_mode = 2
-
-[node name="Display" type="Label" parent="DisplayContainer/VBoxContainer"]
-layout_mode = 2
+theme_override_fonts/font = ExtResource("2_v7als")
 
 [node name="StatsContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -320.0
-offset_top = 3.0
-offset_right = -319.0
-offset_bottom = 23.0
+offset_left = -1.0
+offset_bottom = 20.0
 grow_horizontal = 0
-scale = Vector2(323.456, 12.8461)
-size_flags_vertical = 8
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="StatsContainer"]
+[node name="Stats" type="Label" parent="StatsContainer"]
 layout_mode = 2
-
-[node name="Stats" type="Label" parent="StatsContainer/VBoxContainer"]
-layout_mode = 2
+size_flags_horizontal = 0
 theme_override_fonts/font = ExtResource("2_v7als")
 theme_override_font_sizes/font_size = 20
+
+[node name="ConditionContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -30.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Conditions" type="Label" parent="ConditionContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_v7als")
+
+[node name="GameStatusContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="GameStatus" type="Label" parent="GameStatusContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_v7als")
 
 [node name="Buttons" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -96,10 +126,17 @@ text = "Pass"
 
 [node name="ToLevels" type="Button" parent="Buttons/HBoxContainer"]
 layout_mode = 2
-disabled = true
+theme_override_fonts/font = ExtResource("2_v7als")
 text = "To levels"
+
+[node name="Again" type="Button" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_v7als")
+text = "Again"
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="Buttons/HBoxContainer/Block" to="." method="_on_block_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/Pass" to="." method="_on_pass_pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/ToLevels" to="." method="_on_to_levels_pressed"]
+[connection signal="pressed" from="Buttons/HBoxContainer/Again" to="." method="_on_again_pressed"]

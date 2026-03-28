@@ -1,6 +1,18 @@
-extends Node2D
+extends Control
 
-var timer = 60
+@onready var _display = $DisplayContainter/Display
+
+@onready var _stats = $StatsContainer/Stats
+@onready var _conditions = $ConditionContainer/Conditions
+@onready var _game_status = $GameStatusContainer/GameStatus
+
+@onready var _pass_btn = $Buttons/HBoxContainer/Pass
+@onready var _block_btn = $Buttons/HBoxContainer/Block
+@onready var _to_levels_btn = $Buttons/HBoxContainer/ToLevels
+@onready var _to_again_btn = $Buttons/HBoxContainer/Again
+
+var game_began = false
+var timer = 10
 
 var conditions
 var is_passable
@@ -10,43 +22,89 @@ var wrong_pass = 0
 var wrong_block = 0
 
 func next():
-	if timer <= 0:
-		end()
-	else:
-		is_passable = randi_range(0,1)
-		var header = ""
-		var body = ""
-		if is_passable:
-			header = conditions["passable"]["headers"][randi_range(0, len(conditions["passable"]["headers"])-1)]
-			body = conditions["passable"]["bodys"][randi_range(0, len(conditions["passable"]["bodys"])-1)]
+	if game_began:
+		if timer <= 0:
+			end()
 		else:
-			header = conditions["blockable"]["headers"][randi_range(0, len(conditions["blockable"]["headers"])-1)]
-			body = conditions["blockable"]["bodys"][randi_range(0, len(conditions["blockable"]["bodys"])-1)]
+			is_passable = randi_range(0,1)
+			var header = ""
+			var body = ""
+			if is_passable:
+				header = conditions["passable"]["headers"][randi_range(0, len(conditions["passable"]["headers"])-1)]
+				body = conditions["passable"]["bodys"][randi_range(0, len(conditions["passable"]["bodys"])-1)]
+			else:
+				header = conditions["blockable"]["headers"][randi_range(0, len(conditions["blockable"]["headers"])-1)]
+				body = conditions["blockable"]["bodys"][randi_range(0, len(conditions["blockable"]["bodys"])-1)]
+				
+			_display.text = header + "\n\n" + body
 			
-		$DisplayContainer/VBoxContainer/Display.text = header + "\n\n" + body
-		
-		$DisplayContainer/VBoxContainer/Display.visible_ratio = 0
-		var tween = get_tree().create_tween()
-		tween.tween_property($DisplayContainer/VBoxContainer/Display, 'visible_ratio', 1, 0.5)
+			_display.visible_ratio = 0
+			var tween = get_tree().create_tween()
+			tween.tween_property(_display, 'visible_ratio', 1, 0.2)
 		
 func brief():
-	$DisplayContainer/VBoxContainer/Display.text = conditions["brief"]
+	_display.text = "\n".join(conditions["brief"])
 	
-	$DisplayContainer/VBoxContainer/Display.visible_ratio = 0
+	_display.text += "\n\n\n\nPress Enter to start"
+	
+	_display.visible_ratio = 0
 	var tween = get_tree().create_tween()
-	tween.tween_property($DisplayContainer/VBoxContainer/Display, 'visible_ratio', 1, 0.5)
+	tween.tween_property(_display, 'visible_ratio', 1, 2)
 	
 func end():
-	$StatsContainer/VBoxContainer/Stats.text = ""
-	$DisplayContainer/VBoxContainer/Display.text = "Congratulations!"
+	_pass_btn.hide()
+	_block_btn.hide()
+	_display.visible_ratio = 0
+	_stats.text = ""
+	
+	var end_text = ""
+	var grade = 10
+	var grade_sym = "F"
+	
+	if wrong_pass :
+		grade -= 10
+	
+	if wrong_block :
+		grade -= wrong_block
+		
+	if total_count /10 < conditions["end"]["metrics"]["rps"]:
+		grade  -= 1
+	
+	if grade > 3:
+		grade_sym = "E"
+	if grade > 5:
+		grade_sym = "D"
+	if grade > 6:
+		grade_sym = "C"
+	if grade >7:
+		grade_sym = "B"
+	if grade >8:
+		grade_sym = "A"
+	if grade == 10:
+		grade_sym = "S+"
+		
+	end_text += "\n\nGRADE: "+grade_sym
+	
+	_display.text = end_text
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(_display, 'visible_ratio', 1, 2)
+	
+	_to_levels_btn.show()
+	_to_again_btn.show()
 		
 func _process(delta: float) -> void:
-	if timer>0:
+	if timer>0 and game_began:
 		timer -=delta
 	update_counters()
 	
 
 func _on_ready() -> void:
+	_pass_btn.hide()
+	_block_btn.hide()
+	_to_levels_btn.hide()
+	_to_again_btn.hide()
+	
 	var file = FileAccess.open("res://scenes/levels/level1/conditions.json", FileAccess.READ)
 	if file == null:
 		push_error("Cannot open file: res://scenes/levels/level1/conditions.json")
@@ -57,26 +115,26 @@ func _on_ready() -> void:
 	
 
 func update_counters():
-	$Stats.text = "Time: "+str(int(timer))+\
-	"\nLatency: 0" +\
+	_stats.text = "Time: " + str(snapped(timer, 0.01)) + \
+	"\nRPS: " + str(snapped(total_count/(10 - timer+1), 0.01))  + \
 	"\nTotal: "+str(total_count)+\
 	"\nWrong pass: "+str(wrong_pass)+\
 	"\nWrong blocked: "+str(wrong_block)
 
 func  _pass():
-	print("pass")
-	if is_passable == 0:
-		wrong_pass+=1
-	total_count+=1
-	next()
+	if game_began:
+		if is_passable == 0:
+			wrong_pass+=1
+		total_count+=1
+		next()
 	
 
 func  _block():
-	print("block")
-	if is_passable == 1:
-		wrong_block+=1
-	total_count+=1
-	next()
+	if game_began:
+		if is_passable == 1:
+			wrong_block+=1
+		total_count+=1
+		next()
 		
 
 func _on_block_pressed() -> void:
@@ -93,3 +151,25 @@ func _input(event):
 		_block()
 	if event.is_action_pressed("Pass"):
 		_pass()
+	if event.is_action_pressed("Begin") and not game_began:
+		game_began = true
+		_block_btn.show()
+		_pass_btn.show()
+		_conditions.text = "\n".join(conditions["conditions"])
+		_game_status.text = "esc to pause"
+		next()
+	if event.is_action_pressed("Stop"):
+		if game_began:
+			game_began = false
+			_pass_btn.hide()
+			_block_btn.hide()
+			_game_status.text  = "Game paused\nPress Enter to resume"
+		else:
+			game_began = true
+			_block_btn.show()
+			_pass_btn.show()
+			_game_status.text  = "esc to pause"
+
+
+func _on_again_pressed() -> void:
+	get_tree().reload_current_scene() # Replace with function body.
