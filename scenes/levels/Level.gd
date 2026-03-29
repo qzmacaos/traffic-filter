@@ -8,7 +8,7 @@ extends Control
 
 @onready var _pass_btn = $Buttons/HBoxContainer/Pass
 @onready var _block_btn = $Buttons/HBoxContainer/Block
-@onready var _to_levels_btn = $Buttons/HBoxContainer/ToLevels
+@onready var _to_menu_btn = $Buttons/HBoxContainer/ToMenu
 @onready var _restart_btn = $Buttons/HBoxContainer/Restart
 
 var game_began = false
@@ -20,6 +20,9 @@ var is_passable
 var total_count = 0
 var wrong_pass = 0
 var wrong_block = 0
+
+const GAME_BEGAN= "Left Arrow to Block\nRight Arrow to Pass\nEsc to Pause"
+const GAME_PAUSE = "Game paused\nPress Enter to resume"
 
 func next():
 	if game_began:
@@ -44,8 +47,6 @@ func next():
 		
 func brief():
 	_display.text = "\n".join(conditions["brief"])
-	
-	_display.text += "\n\n\n\nPress Enter to start"
 	
 	_display.visible_ratio = 0
 	var tween = get_tree().create_tween()
@@ -91,7 +92,7 @@ func end():
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(_display, 'visible_ratio', 1, 2)
-	_to_levels_btn.show()
+	
 	
 	await get_tree().create_timer(2.0).timeout
 	var news = "\n".join(conditions["end"]["news"]["fail"])
@@ -99,6 +100,10 @@ func end():
 		news = "\n".join(conditions["end"]["news"]["success"])
 	
 	_display.text = end_text+"\n\nNEWS\n\n"+news
+	
+	_to_menu_btn.show()
+	_restart_btn.show()
+		
 		
 func _process(delta: float) -> void:
 	if timer>0 and game_began:
@@ -109,7 +114,7 @@ func _process(delta: float) -> void:
 func _on_ready() -> void:
 	_pass_btn.hide()
 	_block_btn.hide()
-	_to_levels_btn.hide()
+	_to_menu_btn.hide()
 	_restart_btn.hide()
 	
 	var file = FileAccess.open(Meta.level, FileAccess.READ)
@@ -132,6 +137,7 @@ func  _pass():
 	if game_began:
 		if is_passable == 0:
 			wrong_pass+=1
+			$BlockFail.play()
 		total_count+=1
 		next()
 	
@@ -140,6 +146,7 @@ func  _block():
 	if game_began:
 		if is_passable == 1:
 			wrong_block+=1
+			$PassFail.play()
 		total_count+=1
 		next()
 		
@@ -150,8 +157,8 @@ func _on_block_pressed() -> void:
 func _on_pass_pressed() -> void:
 	_pass()
 	
-func _on_to_levels_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/ui/Levels.tscn")
+func _on_to_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/ui/Menu.tscn")
 
 func _input(event):
 	if event.is_action_pressed("Block"):
@@ -163,7 +170,7 @@ func _input(event):
 		_block_btn.show()
 		_pass_btn.show()
 		_conditions.text = "\n".join(conditions["conditions"])
-		_game_status.text = "esc to pause"
+		_game_status.text = GAME_BEGAN
 		next()
 	if event.is_action_pressed("Stop"):
 		if game_began:
@@ -171,13 +178,15 @@ func _input(event):
 			_pass_btn.hide()
 			_block_btn.hide()
 			_restart_btn.show()
-			_game_status.text  = "Game paused\nPress Enter to resume"
+			_to_menu_btn.show()
+			_game_status.text  = GAME_PAUSE
 		else:
 			game_began = true
 			_block_btn.show()
 			_pass_btn.show()
 			_restart_btn.hide()
-			_game_status.text  = "esc to pause"
+			_to_menu_btn.hide()
+			_game_status.text  = GAME_BEGAN
 
 
 func _on_restart_pressed() -> void:

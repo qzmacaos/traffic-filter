@@ -118,7 +118,7 @@ offset_right = 225.0
 offset_bottom = 69.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 150
+theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
@@ -171,6 +171,7 @@ text = "Exit"
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=550835664]
 stream = ExtResource("3_sh3q5")
 autoplay = true
+parameters/looping = true
 
 [node name="Credits" type="MarginContainer" parent="." unique_id=70546194]
 visible = false

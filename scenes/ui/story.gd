@@ -8,7 +8,7 @@ func load_menu():
 func _ready() -> void:
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property($MarginContainer/VBoxContainer/Label, 'visible_ratio', 1, 30)
+	tween.tween_property($MarginContainer/VBoxContainer/Label, 'visible_ratio', 1, 27)
 	await get_tree().create_timer(30.0).timeout
 	load_menu()
 

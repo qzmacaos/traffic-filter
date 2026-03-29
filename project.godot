@@ -25,6 +25,7 @@ Meta="*res://lib/Meta.gd"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [input]
