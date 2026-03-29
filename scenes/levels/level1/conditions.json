@@ -52,18 +52,30 @@
 		    "DELETE temp.bin"
 		],
 		"bodys": [
-			"{
-				\"message\":\"У меня дверь не открывается\"
-			}",
-			"{
-				\"message\":\"Две большие пиццы и пиво\"
-			}",
-			"{
-				\"message\":\"sorry my home locked me in i cant go on date with you\"
-			}",
-			"{
-				\"result\":\"ok\"
-			}"
+			"{\"message\":\"У меня дверь не открывается\"}",
+			"{\"message\":\"Две большие пиццы и пиво\"}",
+			"{\"message\":\"sorry my home locked me in i cant go on date with you\"}",
+			"{\"result\":\"ok\"}",
+			"{\"message\":\"Mi coche no arranca, necesito ayuda\"}",
+			"{\"message\":\"Deux cafés et un croissant s'il vous plaît\"}",
+			"{\"message\":\"Ich kann das Fenster nicht schließen\"}",
+			"{\"result\":\"error\"}",
+			"{\"message\":\"注文した荷物がまだ届いていません\"}",
+			"{\"message\":\"배터리가 없어서 충전기 좀 빌릴 수 있을까요\"}",
+			"{\"message\":\"我的电脑突然关机了怎么办\"}",
+			"{\"result\":\"pending\"}",
+			"{\"message\":\"Il mio volo è stato cancellato cosa faccio\"}",
+			"{\"message\":\"Minha internet caiu de novo\"}",
+			"{\"message\":\"Kapım kilitli içeri giremiyorum\"}",
+			"{\"result\":\"ok\"}",
+			"{\"message\":\"Забыл зонт а на улице ливень\"}",
+			"{\"message\":\"Can you bring extra napkins please\"}",
+			"{\"message\":\"Mon chat a encore mangé mes écouteurs\"}",
+			"{\"result\":\"error\"}",
+			"{\"message\":\"Das Restaurant ist schon geschlossen\"}",
+			"{\"message\":\"Se me olvidó el cumpleaños de mi madre\"}",
+			"{\"message\":\"電車に財布を忘れてしまいました\"}",
+		    "{\"result\":\"ok\"}"
 		]
 	},
 	"blockable":{
@@ -73,19 +85,28 @@
 		],
 		"bodys": [
 			"{}",
-			"{
-				\"cold water\":200
-				\"hot water\":103,
-			}",
-			"{
-				\"cold water\":800
-				\"hot water\":0,
-			}",
-			"{
-				\"cold water\":304
-				\"hot water\":444,
-			}",
-			"{\"result\":\"ok\"}"
+			"{\"cold water\":200,\"hot water\":103}",
+			"{\"cold water\":800,\"hot water\":0}",
+			"{\"cold water\":304,\"hot water\":444}",
+			"{\"result\":\"ok\"}",
+			"{\"cold water\":0,\"hot water\":500}",
+			"{\"cold water\":150,\"hot water\":150}",
+			"{\"cold water\":600,\"hot water\":200}",
+			"{\"cold water\":999,\"hot water\":1}",
+			"{\"result\":\"ok\"}",
+			"{\"cold water\":50,\"hot water\":750}",
+			"{\"cold water\":400,\"hot water\":400}",
+			"{\"cold water\":123,\"hot water\":321}",
+			"{\"cold water\":0,\"hot water\":0}",
+			"{\"result\":\"error\"}",
+			"{\"cold water\":750,\"hot water\":50}",
+			"{\"cold water\":333,\"hot water\":667}",
+			"{\"cold water\":900,\"hot water\":100}",
+			"{\"cold water\":10,\"hot water\":990}",
+			"{\"result\":\"ok\"}",
+			"{\"cold water\":256,\"hot water\":512}",
+			"{\"cold water\":480,\"hot water\":320}",
+		    "{\"result\":\"pending\"}"
 		]
 	}
 }

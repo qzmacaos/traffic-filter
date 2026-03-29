@@ -1,27 +1,18 @@
 {
 	"brief": [
-		"Got it?",
-		"Now for something more interesting.",
-		"Block everything on the .let and .org domains.",
-		"Also, block all messages that mention John Doe.",
-		"Few mistakes os ok."
 	],
 	"conditions": [
-		"block .org .let",
-		"block John Doe mention"
 	],
 	"end": {
 		"metrics":{
 			"rps": 0.1,
 			"max_block_mistakes": 10,
-			"max_pass_mistakes": 3
+			"max_pass_mistakes": 0
 		},
 		"news":{
 			"success":[
-				""
 			],
 			"fail":[
-				""
 			]
 		}
 	},

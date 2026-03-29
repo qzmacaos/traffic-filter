@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ude18uurb2e8"]
+[gd_scene format=3 uid="uid://ude18uurb2e8"]
 
 [ext_resource type="Script" uid="uid://d38ntcbp2yisl" path="res://scenes/ui/menu.gd" id="1_0dynd"]
 [ext_resource type="FontFile" uid="uid://cqu680hkordic" path="res://resources/PressStart2P-Regular.ttf" id="2_vhthp"]
+[ext_resource type="AudioStream" uid="uid://cp0xca06ox3ed" path="res://resources/WTF-main-theme.mp3" id="3_sh3q5"]
 
-[node name="Menu" type="Control"]
+[node name="Menu" type="Control" unique_id=539237566]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,13 +13,102 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0dynd")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1950430995]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(28.8, 16.2)
 color = Color(0, 0, 0, 1)
 
-[node name="Title" type="MarginContainer" parent="."]
+[node name="Levels" type="MarginContainer" parent="." unique_id=1452747912]
+visible = false
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -436.0
+offset_right = 436.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Levels" unique_id=1432128585]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Levels/VBoxContainer" unique_id=928211271]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Levels/VBoxContainer/HBoxContainer" unique_id=285826673]
+layout_mode = 2
+
+[node name="Level1" type="Button" parent="Levels/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=136296951]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vhthp")
+theme_override_font_sizes/font_size = 40
+text = "Level-1"
+
+[node name="Level2" type="Button" parent="Levels/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=322876966]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vhthp")
+theme_override_font_sizes/font_size = 40
+text = "Level-2"
+
+[node name="Level3" type="Button" parent="Levels/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=815300639]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vhthp")
+theme_override_font_sizes/font_size = 40
+text = "Level-3"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Levels/VBoxContainer/HBoxContainer" unique_id=1535403187]
+layout_mode = 2
+
+[node name="Level4" type="Button" parent="Levels/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=659332255]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vhthp")
+theme_override_font_sizes/font_size = 40
+text = "Level-4"
+
+[node name="Level5" type="Button" parent="Levels/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=2128277729]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vhthp")
+theme_override_font_sizes/font_size = 40
+text = "Level-5"
+
+[node name="Level6" type="Button" parent="Levels/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1036388111]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vhthp")
+theme_override_font_sizes/font_size = 40
+text = "Level-6"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Levels/VBoxContainer/HBoxContainer" unique_id=542674058]
+layout_mode = 2
+
+[node name="Level7" type="Button" parent="Levels/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=1875855177]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vhthp")
+theme_override_font_sizes/font_size = 40
+text = "Level-7"
+
+[node name="Level8" type="Button" parent="Levels/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=1573207004]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vhthp")
+theme_override_font_sizes/font_size = 40
+text = "Level-8"
+
+[node name="Level9" type="Button" parent="Levels/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=1748414066]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vhthp")
+theme_override_font_sizes/font_size = 40
+text = "Level-9"
+
+[node name="Back" type="Button" parent="Levels/VBoxContainer" unique_id=55055769]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vhthp")
+theme_override_font_sizes/font_size = 50
+text = "Back"
+
+[node name="Title" type="MarginContainer" parent="." unique_id=1033111581]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -32,14 +122,14 @@ theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="Label" type="Label" parent="Title"]
+[node name="Label" type="Label" parent="Title" unique_id=732977029]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_vhthp")
 theme_override_font_sizes/font_size = 50
 text = "World Traffic Filter"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1776719685]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -54,30 +144,72 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1325745398]
 layout_mode = 2
 
-[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer" unique_id=311018312]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_vhthp")
 theme_override_font_sizes/font_size = 50
 text = "Play"
 
-[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1582043276]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_vhthp")
 theme_override_font_sizes/font_size = 50
 text = "Credits"
 
-[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1334801076]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_vhthp")
 theme_override_font_sizes/font_size = 50
 text = "Exit"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=550835664]
+stream = ExtResource("3_sh3q5")
+autoplay = true
+
+[node name="Credits" type="MarginContainer" parent="." unique_id=70546194]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits" unique_id=639204814]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Credits/VBoxContainer" unique_id=2101380564]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_vhthp")
+text = "x_kostya_x
+qzma"
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="Credits/VBoxContainer" unique_id=81567270]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_vhthp")
+text = "Back"
+
+[connection signal="pressed" from="Levels/VBoxContainer/HBoxContainer/VBoxContainer/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Levels/VBoxContainer/HBoxContainer/VBoxContainer/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Levels/VBoxContainer/HBoxContainer/VBoxContainer/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="Levels/VBoxContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Credits/VBoxContainer/Back" to="." method="_on_back_pressed"]
