@@ -35,11 +35,71 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Level1" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1543660775]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1812530662]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=474408443]
+layout_mode = 2
+
+[node name="Level1" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1543660775]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_fu2qk")
-theme_override_font_sizes/font_size = 50
-text = "Level 1"
+theme_override_font_sizes/font_size = 40
+text = "Level-1"
+
+[node name="Level2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=800757522]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fu2qk")
+theme_override_font_sizes/font_size = 40
+text = "Level-2"
+
+[node name="Level3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=912737579]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fu2qk")
+theme_override_font_sizes/font_size = 40
+text = "Level-3"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1941754038]
+layout_mode = 2
+
+[node name="Level4" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=496270432]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fu2qk")
+theme_override_font_sizes/font_size = 40
+text = "Level-4"
+
+[node name="Level5" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=661982847]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fu2qk")
+theme_override_font_sizes/font_size = 40
+text = "Level-5"
+
+[node name="Level6" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1796152046]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fu2qk")
+theme_override_font_sizes/font_size = 40
+text = "Level-6"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=345093366]
+layout_mode = 2
+
+[node name="Level7" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=360804159]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fu2qk")
+theme_override_font_sizes/font_size = 40
+text = "Level-7"
+
+[node name="Level8" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=819238773]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fu2qk")
+theme_override_font_sizes/font_size = 40
+text = "Level-8"
+
+[node name="Level9" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=259726885]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fu2qk")
+theme_override_font_sizes/font_size = 40
+text = "Level-9"
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2075077396]
 layout_mode = 2
@@ -47,5 +107,5 @@ theme_override_fonts/font = ExtResource("2_fu2qk")
 theme_override_font_sizes/font_size = 50
 text = "Back"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

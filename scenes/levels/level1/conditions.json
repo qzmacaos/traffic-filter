@@ -33,6 +33,23 @@
 			"POST messaga.koz",
 			"POST explore.koz",
 			"POST twee.lum",
+			"GET profile.net",
+			"GET users.org",
+			"GET feed.dev",
+			"PUT settings.app",
+			"PUT account.xyz",
+			"PUT data.io",
+			"DELETE session.fun",
+			"DELETE cache.run",
+			"DELETE files.box",
+			"POST upload.fit",
+			"GET search.hub",
+			"PUT config.lab",
+			"DELETE logs.cdn",
+			"POST auth.api",
+			"GET stats.map",
+			"PUT media.web",
+		    "DELETE temp.bin"
 		],
 		"bodys": [
 			"{
@@ -52,10 +69,22 @@
 	"blockable":{
 		"headers": [
 			"POST explorer.hom",
-			"POST powder.hom"
+			"POST unlock.hom"
 		],
 		"bodys": [
 			"{}",
+			"{
+				\"cold water\":200
+				\"hot water\":103,
+			}",
+			"{
+				\"cold water\":800
+				\"hot water\":0,
+			}",
+			"{
+				\"cold water\":304
+				\"hot water\":444,
+			}",
 			"{\"result\":\"ok\"}"
 		]
 	}
