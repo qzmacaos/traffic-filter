@@ -15,6 +15,10 @@ run/main_scene="uid://soh55kvdrfht"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Meta="*res://lib/Meta.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"

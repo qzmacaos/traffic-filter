@@ -9,7 +9,7 @@ extends Control
 @onready var _pass_btn = $Buttons/HBoxContainer/Pass
 @onready var _block_btn = $Buttons/HBoxContainer/Block
 @onready var _to_levels_btn = $Buttons/HBoxContainer/ToLevels
-@onready var _to_again_btn = $Buttons/HBoxContainer/Again
+@onready var _restart_btn = $Buttons/HBoxContainer/Restart
 
 var game_began = false
 var timer = 10
@@ -51,6 +51,8 @@ func brief():
 	var tween = get_tree().create_tween()
 	tween.tween_property(_display, 'visible_ratio', 1, 2)
 	
+	
+	
 func end():
 	_pass_btn.hide()
 	_block_btn.hide()
@@ -89,9 +91,14 @@ func end():
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(_display, 'visible_ratio', 1, 2)
-	
 	_to_levels_btn.show()
-	_to_again_btn.show()
+	
+	await get_tree().create_timer(2.0).timeout
+	var news = "\n".join(conditions["end"]["news"]["fail"])
+	if grade > 6:
+		news = "\n".join(conditions["end"]["news"]["success"])
+	
+	_display.text = end_text+"\n\nNEWS\n\n"+news
 		
 func _process(delta: float) -> void:
 	if timer>0 and game_began:
@@ -103,11 +110,11 @@ func _on_ready() -> void:
 	_pass_btn.hide()
 	_block_btn.hide()
 	_to_levels_btn.hide()
-	_to_again_btn.hide()
+	_restart_btn.hide()
 	
-	var file = FileAccess.open("res://scenes/levels/level1/conditions.json", FileAccess.READ)
+	var file = FileAccess.open(Meta.level, FileAccess.READ)
 	if file == null:
-		push_error("Cannot open file: res://scenes/levels/level1/conditions.json")
+		push_error("Cannot open file: "+Meta.level)
 	conditions = JSON.parse_string(file.get_as_text())
 	file.close()
 	
@@ -163,13 +170,15 @@ func _input(event):
 			game_began = false
 			_pass_btn.hide()
 			_block_btn.hide()
+			_restart_btn.show()
 			_game_status.text  = "Game paused\nPress Enter to resume"
 		else:
 			game_began = true
 			_block_btn.show()
 			_pass_btn.show()
+			_restart_btn.hide()
 			_game_status.text  = "esc to pause"
 
 
-func _on_again_pressed() -> void:
-	get_tree().reload_current_scene() # Replace with function body.
+func _on_restart_pressed() -> void:
+	get_tree().reload_current_scene() 
